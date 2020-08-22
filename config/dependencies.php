@@ -1,5 +1,6 @@
 <?php
 
+//Container de injeção de dependencia
 $builder = new DI\ContainerBuilder();
 $builder->addDefinitions([
     \Doctrine\ORM\EntityManagerInterface::class => function () {

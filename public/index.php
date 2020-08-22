@@ -15,13 +15,13 @@ if (!array_key_exists($caminho, $rotas)) {
     exit();
 }
 
-session_start();
+//session_start();
 
-$ehRotaDeLogin = stripos($caminho, 'login');
-if (!isset($_SESSION['logado']) && $ehRotaDeLogin === false) {
-    header('Location: /login');
-    exit();
-}
+//$ehRotaDeLogin = stripos($caminho, 'login');
+//if (!isset($_SESSION['logado']) && $ehRotaDeLogin === false) {
+//    header('Location: /login');
+//    exit();
+//}
 
 $psr17Factory = new Psr17Factory();
 
@@ -35,9 +35,11 @@ $creator = new ServerRequestCreator(
 $serverRequest = $creator->fromGlobals();
 
 $classeControladora = $rotas[$caminho];
+
 /** @var ContainerInterface $container */
 $container = require __DIR__ . '/../config/dependencies.php';
 /** @var RequestHandlerInterface $controlador */
+
 $controlador = $container->get($classeControladora);
 
 $resposta = $controlador->handle($serverRequest);

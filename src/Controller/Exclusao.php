@@ -32,6 +32,7 @@ class Exclusao implements RequestHandlerInterface
         );
 
         $resposta = new Response(302, ['Location' => '/listar-cursos']);
+
         if (is_null($id) || $id === false) {
             $this->defineMensagem('danger', 'Curso inexistente');
             return $resposta;
@@ -41,6 +42,7 @@ class Exclusao implements RequestHandlerInterface
             Curso::class,
             $id
         );
+
         $this->entityManager->remove($curso);
         $this->entityManager->flush();
         $this->defineMensagem('success', 'Curso excluído com sucesso');
